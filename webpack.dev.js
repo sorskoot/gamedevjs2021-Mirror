@@ -6,10 +6,10 @@ module.exports = merge(common, {
     mode: 'development',
     "devtool": "inline-source-map",
     devServer: {
-        https: true,
-        port:443,     
+        https: false,
+        port:7551,     
         disableHostCheck: true,
-        host: 'c0dr.nl',
+        host: 'localhost',
         contentBase: __dirname+'/dist',
         key: fs.readFileSync('c0dr.key'),
         cert: fs.readFileSync('c0dr.crt'),

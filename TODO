@@ -1,3 +1,67 @@
+MustHave:
+    ✔ Add mirrors (boxes) we can hold in our hands @done(21-04-15 21:25)
+    ✔ Enemies @done(21-04-15 21:52)
+    ☐ Shooting enemies
+    ☐ Bounce back the bullets
+
+GAME:
+    ☐ Basic: Enemies shoot lasers at you, you need to bounce them back
+        ~ need lots of sounds
+        ~ need lots of particles
+    ☐ Intermidiate: Catching a laser between the two mirrors to get a bonus boost 
+    ☐ Advanced: Integrate web monetization and decentralization
+        challenges: 1) communicate between desktop and headset
+                       possibly in a similar way as hmd.link does.
+                    2) Getting enough _stuff_ up and running like 
+                       artwork and variation to buy and use.
+                       Maybe something like a mirror ball or different shields.
+                       Maybe buying an NFT avatar you can use inside and outside 
+                       of the game
+
+IDEAS:
+    ☐ Mirrors 
+        - reflections 
+        - different world behind the mirror
+            - like the upside-down from stranger things
+        - step through the mirror
+        - bounce lasers
+            - puzzel game
+                ~ https://geekdad.com/2013/06/laser-maze/
+                ~ https://play.google.com/store/apps/details?id=com.halfpixelgames.raytrace.laser.puzzle.free
+                ~ https://nl.pinterest.com/pin/80501912068611773/
+            - @high hold a mirror to bounce lasers shooting at you
+                - player can't shoot
+                - player only has 2 mirrors in their hands to bounce mirrors
+                - player can use mirrors around the area to bounce lasers 
+                - player can capture a laser between the to mirrors to boost (Casimir)
+                - player can user upgrades (i.e. discoball to scatter laser)
+
+        - horror type, stand in front of a mirror say a name (Candyman, Bloody Mary)
+            ~ Spectrophobia
+        - Casimir Effect - something about waves moving between mirrors in a vacuum
+           ~ https://www.scientificamerican.com/article/what-is-the-casimir-effec/
+        - dancing in front of a mirror
+
+    ☐ Mirroring
+        - repeat what the other does
+
+
+    Bonus points:
+        Web monetizations:
+            - when monitized get access to more stuff
+        Decentralized:
+            ☐ @low list of highscores (NEAR)
+            ☐ @low NFT on NEAR with Avatars. 
+                ~ Maybe with special stats
+                ~ Show the avatar on screen and with the highscore
+                ~ Challenge, make A LOT of avatars
+            - create puzzles and share them
+            - @low Buy special NFT shields (NEAR)
+
+            - Tournaments
+            - Play together, world invasion
+                - defend your own little piece and help others
+
 Must have:
 
 Bug:
