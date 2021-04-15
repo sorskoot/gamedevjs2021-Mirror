@@ -18,18 +18,22 @@
   <a-scene game enemy-spawner>    
     <a-assets>   
       <a-asset-item id="enemy-model" 
-        src="/models/enemy.glb"></a-asset-item>
+        src="/models/enemy.glb"></a-asset-item>      
       <a-mixin id="enemy-mixin" gltf-model="#enemy-model" 
-        scale=".4 .4 .4"></a-mixin>   
+        scale=".4 .4 .4"></a-mixin>         
+        
+      <a-mixin id="bullet-mixin" scale=".1 .1 .1"></a-mixin>         
     </a-assets>    
     
     <a-entity id="enemy-group">
     </a-entity>
+    <a-entity id="bullet-group">      
+    </a-entity>
 
-    <a-entity shoot-controls="hand:left">
+    <a-entity id="left-hand" shoot-controls="hand:left">
       <a-box color="red" scale=".3 .5 .02"></a-box>
     </a-entity>
-    <a-entity shoot-controls="hand:right">
+    <a-entity id="right-hand"  shoot-controls="hand:right">
       <a-box color="green" scale=".3 .5 .02"></a-box>
     </a-entity>
     <a-entity id="camera" camera look-controls />
