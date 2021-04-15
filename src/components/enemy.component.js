@@ -8,9 +8,9 @@ AFRAME.registerComponent('enemy', {
         this.bulletgroup = document.getElementById("bullet-group");
         this.el.setAttribute('mixin', 'enemy-mixin');
         let position = new THREE.Vector3(
-            Math.sin(Math.random() * Math.PI * 2) * 25,
+            Math.sin(Math.random() * Math.PI) * 25,
             10,
-            Math.cos(Math.random() * Math.PI * 2) * 25
+            Math.cos(Math.random() * Math.PI) * 25
         );
         this.el.setAttribute("position", position);
 
@@ -26,7 +26,7 @@ AFRAME.registerComponent('enemy', {
         bullet.setAttribute("bullet", { target });
         bullet.setAttribute("selfdestruct", { timer: 4000 });
         bullet.setAttribute("mixin", "bullet-mixin");
-        bullet.setAttribute("geometry","primitive: box; width: 1; height: 1; depth: 1")        
+        bullet.setAttribute("geometry","primitive: box; width: .35; height: .35; depth: 6")        
         bullet.setAttribute("position", this.el.object3D.position);
         this.bulletgroup.appendChild(bullet);
     }
