@@ -9,6 +9,9 @@ AFRAME.registerComponent('bullet', {
         },
         target: {
             type: "vec3"
+        },
+        armed:{
+            default:false            
         }
     },
     init: function () {
@@ -19,22 +22,21 @@ AFRAME.registerComponent('bullet', {
         this.isMoving = true;
 
         this.el.object3D.lookAt(new THREE.Vector3(this.data.target.x, this.data.target.y, this.data.target.z),);
-        this.el.setAttribute("raycaster", "far:.4;showLine:false;objects:.mirror;direction:0 0 1");
+        this.el.setAttribute("raycaster", "far:.4;showLine:false;objects:.mirror,.enemy;direction:0 0 1");
         this.el.addEventListener('raycaster-intersection', (e) => {
             let elm = e.detail.els[0];
-            console.log(elm.id);
-            //var vec = forwardVector.clone().ransformDirection) ;//.applyQuaternion(this.el.parentEl.object3D.quaternion);            
-            var originalNormal = new THREE.Vector3(0, 0, 1);
-            var objRotation = elm.parentEl.object3D.rotation;
-            ;
-            this.direction.reflect(originalNormal.applyEuler(objRotation));
-            let newTarget = this.el.object3D.position.clone().add(this.direction);
-            this.el.object3D.lookAt(newTarget);
-            // let explosion = document.createElement('a-entity');
-            // explosion.setAttribute('position', elm.object3D.position);
-            // explosion.setAttribute('explosion', '');
-            // this.missilegroup.appendChild(explosion);
-            //this.isMoving = false;
+            if(elm.classList.contains("mirror")){
+                var originalNormal = new THREE.Vector3(0, 0, 1);
+                var objRotation = elm.parentEl.object3D.rotation;            
+                this.direction.reflect(originalNormal.applyEuler(objRotation));
+                let newTarget = this.el.object3D.position.clone().add(this.direction);
+                this.el.object3D.lookAt(newTarget);
+                this.data.armed = true;
+            }
+            if(elm.classList.contains("enemy") && this.data.armed ){
+                elm.setAttribute("selfdestruct",{timer:500});
+                this.el.setAttribute("selfdestruct",{timer:500});
+            }            
         });
     },
     update: function (oldData) {
