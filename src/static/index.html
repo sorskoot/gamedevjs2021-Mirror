@@ -4,49 +4,59 @@
   <meta name="monetization" content="$ilp.uphold.com/qxZKhgaL7wWJ">
   <script
     src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d46464268ad8ef541511ba5f87c8f1830066d7de/dist/aframe-master.min.js"></script>
-  
+
+  <script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script>
+  <script
+    src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+
   <script src="https://sfxr.me/riffwave.js"></script>
   <script src="https://sfxr.me/sfxr.js"></script>
   <script src="main.js"></script>
   <style>
-   
+
   </style>
- 
+
 </head>
 
-<body> 
-  <a-scene game enemy-spawner>    
-    <a-assets>   
-      <a-asset-item id="enemy-model" 
-        src="/models/spaceship1.glb"></a-asset-item>      
-      <a-mixin rotation="0 180 0" id="enemy-mixin" gltf-model="#enemy-model" 
-      ></a-mixin>         
-        
-      <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>         
-    </a-assets>    
+<body>
+  <a-scene game enemy-spawner>
+    <a-assets>
+      <a-asset-item id="enemy-model" src="/models/spaceship1.glb"></a-asset-item>
+      <a-mixin rotation="0 0 0" alongpath="curve: #track1; loop:true; dur:10000; rotate:true;" id="enemy-mixin"
+        gltf-model="#enemy-model"></a-mixin>
+
+      <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>
+    </a-assets>
+
     <a-sky space animation="property: rotation; to: -360 -360 0; dur: 800000; easing: linear; loop: true"></a-sky>
     <a-entity id="enemy-group">
     </a-entity>
-    <a-entity id="bullet-group">      
+    <a-entity id="bullet-group">
     </a-entity>
+    <a-curve id="track1" curve="closed:true;">
+      <a-curve-point position="-50 25 -50"></a-curve-point>
+      <a-curve-point position="0 15 -40" ></a-curve-point>
+      <a-curve-point position="0 5 0"></a-curve-point>
+      <a-curve-point position="-40 30 20"></a-curve-point>
+    </a-curve>
     <a-light type="ambient" intensity="4"></a-light>
-    <a-entity id="left-hand"  shoot-controls="hand:left">
+    <a-entity id="left-hand" shoot-controls="hand:left">
       <a-box color="red" class="mirror" scale=".3 .5 .02"></a-box>
     </a-entity>
-    <a-entity id="right-hand"  shoot-controls="hand:right">
+    <a-entity id="right-hand" shoot-controls="hand:right">
       <a-box color="green" class="mirror" scale=".3 .5 .02"></a-box>
     </a-entity>
     <a-entity id="camera" camera look-controls />
-  
+
   </a-scene>
 
   <script>
     if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', () => {       
+      document.monetization.addEventListener('monetizationstart', () => {
         //document.body.style.backgroundColor = "red";
       })
     }
- </script>
+  </script>
 </body>
 
 </html>

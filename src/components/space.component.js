@@ -10,8 +10,7 @@ AFRAME.registerComponent('space', {
         var imageData = c2d.createImageData(canvas.width, canvas.height);
         var data = imageData.data;
         for (var x = 0; x < canvas.width; x++) {
-            for (var y = 0; y < canvas.height; y++) {
-                
+            for (var y = 0; y < canvas.height; y++) {                
                 var v = noise2d(2*x/canvas.width, 2*y/canvas.height);
                 var v2 = noise2d(1* x / canvas.width, 1 * y / canvas.height);
                 var i = (y * canvas.width + x) * 4;
