@@ -18,18 +18,18 @@
   <a-scene game enemy-spawner>    
     <a-assets>   
       <a-asset-item id="enemy-model" 
-        src="/models/enemy.glb"></a-asset-item>      
-      <a-mixin id="enemy-mixin" gltf-model="#enemy-model" 
-        scale=".4 .4 .4"></a-mixin>         
+        src="/models/spaceship1.glb"></a-asset-item>      
+      <a-mixin rotation="0 180 0" id="enemy-mixin" gltf-model="#enemy-model" 
+      ></a-mixin>         
         
       <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>         
     </a-assets>    
-    
+    <a-sky space animation="property: rotation; to: -360 -360 0; dur: 800000; easing: linear; loop: true"></a-sky>
     <a-entity id="enemy-group">
     </a-entity>
     <a-entity id="bullet-group">      
     </a-entity>
-
+    <a-light type="ambient" intensity="4"></a-light>
     <a-entity id="left-hand"  shoot-controls="hand:left">
       <a-box color="red" class="mirror" scale=".3 .5 .02"></a-box>
     </a-entity>
@@ -37,6 +37,7 @@
       <a-box color="green" class="mirror" scale=".3 .5 .02"></a-box>
     </a-entity>
     <a-entity id="camera" camera look-controls />
+  
   </a-scene>
 
   <script>
