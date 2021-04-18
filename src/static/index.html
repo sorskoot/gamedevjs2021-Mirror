@@ -22,32 +22,35 @@
   <a-scene game enemy-spawner>
     <a-assets>
       <a-asset-item id="enemy-model" src="/models/spaceship1.glb"></a-asset-item>
+      <a-asset-item id="environment-model" src="/models/environment.glb"></a-asset-item>
       <a-mixin rotation="0 0 0" alongpath="curve: #track1; loop:true; dur:10000; rotate:true;" id="enemy-mixin"
         gltf-model="#enemy-model"></a-mixin>
 
       <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>
     </a-assets>
 
-    <a-sky space animation="property: rotation; to: -360 -360 0; dur: 800000; easing: linear; loop: true"></a-sky>
+    <a-sky space animation="property: rotation; to: -360 -360 0; dur: 500000; easing: linear; loop: true"></a-sky>
+    <a-entity position="0 .5 2.5" gltf-model="#environment-model"></a-entity>
     <a-entity id="enemy-group">
     </a-entity>
     <a-entity id="bullet-group">
     </a-entity>
     <a-curve id="track1" curve="closed:true;">
-      <a-curve-point position="-50 25 -50"></a-curve-point>
-      <a-curve-point position="0 15 -40" ></a-curve-point>
-      <a-curve-point position="0 5 0"></a-curve-point>
+      <a-curve-point position="-50 35 -100"></a-curve-point>
+      <a-curve-point position="0 30 -80" ></a-curve-point>
+      <a-curve-point position="0 15 0"></a-curve-point>
       <a-curve-point position="-40 30 20"></a-curve-point>
     </a-curve>
-    <a-light type="ambient" intensity="4"></a-light>
+    <a-light type="ambient" intensity="2"></a-light>
     <a-entity id="left-hand" shoot-controls="hand:left">
       <a-box color="red" class="mirror" scale=".3 .5 .02"></a-box>
     </a-entity>
     <a-entity id="right-hand" shoot-controls="hand:right">
       <a-box color="green" class="mirror" scale=".3 .5 .02"></a-box>
     </a-entity>
-    <a-entity id="camera" camera look-controls />
-
+    <a-entity id="camera" position="0 1.7 0" camera look-controls />
+    <a-entity light="intensity: 2; castShadow: true" position="3 7.5 -3.5"></a-entity>
+    <a-entity light="color: #7d6383; type: ambient; intensity: 2"></a-entity>
   </a-scene>
 
   <script>

@@ -5,7 +5,7 @@ const zeroVector = new THREE.Vector3(0, 0, 0);
 AFRAME.registerComponent('bullet', {
     schema: {
         speed: {
-            default: 10
+            default: 30
         },
         target: {
             type: "vec3"
