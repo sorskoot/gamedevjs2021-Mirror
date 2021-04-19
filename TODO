@@ -1,5 +1,9 @@
 MustHave:
-    ☐ Better shield models
+    ☐ Title screen
+    ☐ Game over screen
+    ☐ Winning 
+    ☐ Loosing
+    ✔ Better shield models @done(21-04-19 13:38)
     ☐ Environment model
 
     ✔ Add mirrors (boxes) we can hold in our hands @done(21-04-15 21:25)
