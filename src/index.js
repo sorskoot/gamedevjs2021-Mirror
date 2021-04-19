@@ -1,3 +1,6 @@
+window.forwardVector = new THREE.Vector3(0, 0, 1);
+window.zeroVector= new THREE.Vector3(0,0,0);
+
 import "./components/shoot-controls.component";
 import "./components/game.component";
 import "./components/enemy.component";
