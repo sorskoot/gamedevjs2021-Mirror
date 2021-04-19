@@ -10,6 +10,7 @@ AFRAME.registerComponent('enemy-spawner', {
     init: function () {
         this.enemygroup = document.getElementById("enemy-group");        
        // this.active = true;
+       this.spawnEnemy();
         this.el.sceneEl.addEventListener('enter-vr', () => {
             this.active = true;
             this.spawnEnemy();
