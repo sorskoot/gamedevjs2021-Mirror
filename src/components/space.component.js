@@ -41,6 +41,7 @@ AFRAME.registerComponent('space', {
             src: canvas,
         });
         this.el.setAttribute('rotation',"0 -90 0");
+        document.body.appendChild(canvas);
     }
 });
 

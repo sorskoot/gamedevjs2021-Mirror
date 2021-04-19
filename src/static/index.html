@@ -4,7 +4,6 @@
   <meta name="monetization" content="$ilp.uphold.com/qxZKhgaL7wWJ">
   <script
     src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d46464268ad8ef541511ba5f87c8f1830066d7de/dist/aframe-master.min.js"></script>
-
   <script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script>
   <script
     src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
@@ -21,12 +20,21 @@
 <body>
   <a-scene game enemy-spawner>
     <a-assets>
+      <a-cubemap id="sky-texture">
+      <img src="/images/px.png">
+      <img src="/images/nx.png">
+      <img src="/images/py.png">
+      <img src="/images/ny.png">
+      <img src="/images/pz.png">
+      <img src="/images/nz.png">
+    </a-cubemap>
       <a-asset-item id="enemy-model" src="/models/spaceship1.glb"></a-asset-item>
+      <a-asset-item id="mirror-model" src="/models/mirror.glb"></a-asset-item>
       <a-asset-item id="environment-model" src="/models/environment.glb"></a-asset-item>
       <a-mixin rotation="0 0 0" alongpath="curve: #track1; loop:true; dur:10000; rotate:true;" id="enemy-mixin"
         gltf-model="#enemy-model"></a-mixin>
-
       <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>
+      
     </a-assets>
 
     <a-sky space animation="property: rotation; to: -360 -360 0; dur: 500000; easing: linear; loop: true"></a-sky>
@@ -43,11 +51,23 @@
     </a-curve>
     <a-light type="ambient" intensity="2"></a-light>
     <a-entity id="left-hand" shoot-controls="hand:left">
-      <a-box color="red" class="mirror" scale=".3 .5 .02"></a-box>
+      <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
+      
+      <a-plane position="0 0 -0.152" 
+      rotation="0 180 0" 
+      height="0.67"
+      width="0.39" 
+      env-map="#sky-texture" metalness="1" roughness="0.0" material></a-plane>
     </a-entity>
     <a-entity id="right-hand" shoot-controls="hand:right">
-      <a-box color="green" class="mirror" scale=".3 .5 .02"></a-box>
+      <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
+      <a-plane position="0 0 -0.152" 
+      rotation="0 180 0" 
+      height="0.67"
+      width="0.39" 
+      env-map="#sky-texture" metalness="1" roughness="0.0" material></a-plane>
     </a-entity>
+
     <a-entity id="camera" position="0 1.7 0" camera look-controls />
     <a-entity light="intensity: 2; castShadow: true" position="3 7.5 -3.5"></a-entity>
     <a-entity light="color: #7d6383; type: ambient; intensity: 2"></a-entity>

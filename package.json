@@ -7,8 +7,8 @@
         "start": "webpack serve --open --config webpack.dev",
         "start-https": "http-server ./dist -c-1 -S -C ./c0dr.crt -K ./c0dr.key -p 443",
         "clean": "rm -rf dist/; mkdir -p dist",
-        "buildProd": "webpack --config webpack.prod --progress --colors",
-        "build": "webpack --config webpack.dev --progress --colors",
+        "buildProd": "webpack --config webpack.prod",
+        "build": "webpack --config webpack.dev",
         "watch": "webpack --config webpack.dev --colors --watch",
         "sass": "sass ./src/sass/root.scss ./dist/main.css",
         "sass-watch": "sass ./src/sass/root.scss ./dist/main.css --watch"
