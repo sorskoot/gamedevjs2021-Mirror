@@ -14,7 +14,9 @@
 </head>
 
 <body>
-  <audio id="music-game" src="licensed/5- Dark Fantasy Studio- BFG 9000 (seamless).mp3"></audio>
+  <audio id="music-game" src="licensed/Dark Fantasy Studio- Sky titans (seamless).mp3"></audio>
+  <audio id="music-title" src="licensed/Dark Fantasy Studio- Superheroes of the apocalypse age (seamless).mp3"></audio>
+  <audio id="sfx-hurt" src="/sfx/hurt.mp3"></audio>
   <a-scene game enemy-spawner>
     <a-assets>
       <a-cubemap id="sky-texture">
@@ -28,38 +30,36 @@
       <a-asset-item id="enemy-model" src="/models/spaceship1.glb"></a-asset-item>
       <a-asset-item id="mirror-model" src="/models/mirror.glb"></a-asset-item>
       <a-asset-item id="environment-model" src="/models/environment.glb"></a-asset-item>
-      <a-mixin rotation="0 0 0" id="enemy-mixin"
-        gltf-model="#enemy-model"></a-mixin>
+      <a-mixin rotation="0 0 0" id="enemy-mixin" gltf-model="#enemy-model"></a-mixin>
       <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>
       <a-mixin id="debug-curve" material="color:red" geometry="primitive:sphere;radius:3"></a-mixin>
     </a-assets>
     <a-sky space animation="property: rotation; to: -360 -360 0; dur: 500000; easing: linear; loop: true"></a-sky>
-    <a-entity position="0 .5 2.5" gltf-model="#environment-model"></a-entity>
-    <a-entity id="enemy-group">
-    </a-entity>
-    <a-entity id="bullet-group">
-    </a-entity>    
-    <a-curve id="track1" curve="closed:true;">
-      <a-curve-point position="-50 35 -100" mixin="debug-curve"></a-curve-point>
-      <a-curve-point position="0 30 -80" mixin="debug-curve"></a-curve-point>
-      <a-curve-point position="0 15 0" mixin="debug-curve" ></a-curve-point>
-      <a-curve-point position="-40 30 20" mixin="debug-curve"></a-curve-point>
-    </a-curve>
-    <a-light type="ambient" intensity="2"></a-light>
+    <a-entity position="0 .5 2.5" shadow gltf-model="#environment-model"></a-entity>
+    <a-entity id="enemy-group"></a-entity>
+    <a-entity id="bullet-group"></a-entity>    
+    <a-entity id="explosion-group"></a-entity>        
+    
     <a-entity id="left-hand" shoot-controls="hand:left">
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
-
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>
+      <a-entity id="score" position="0.002 0.149 0.055" text="value: 99; align: center; color: #6663A5"></a-entity>
     </a-entity>
     <a-entity id="right-hand" shoot-controls="hand:right">
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>
+      <a-plane rotation="-14.394 0 0" position="-0.00017 0.14648 0.0420" material="color: green" geometry="height: 0.08; width: 0.05"></a-plane>
+      <a-plane id="healthbar" rotation="-14.394 0 0" position="-0.00017 0.14648 0.0434" material="color: red" geometry="height: 0.08; width: 0.05"></a-plane>
     </a-entity>
 
-    <a-entity id="camera" position="0 1.7 0" camera look-controls />
-    <a-entity light="intensity: 2; castShadow: true" position="3 7.5 -3.5"></a-entity>
+    <a-entity id="camera" position="0 1.7 0" camera look-controls>              
+        <a-box class="player-hitbox" material="opacity:  0.1;  transparent:  true;" position="0 0 0" scale="0.5 1 0.3"> </a-box>
+    </a-entity>
+   
+    <a-entity light="type: point;" position="3 7.5 -3.5"></a-entity>
+    <a-entity light="intensity: 4; castShadow: true; shadowCameraTop: 8; shadowCameraRight: 8; shadowCameraBottom: -8; shadowCameraLeft: -8; shadowMapHeight: 1024; shadowMapWidth: 1024; shadowRadius: 4" position="4.98338 11.44695 -5.67142" visible=""></a-entity>
     <a-entity light="color: #7d6383; type: ambient; intensity: 2"></a-entity>
   </a-scene>
 

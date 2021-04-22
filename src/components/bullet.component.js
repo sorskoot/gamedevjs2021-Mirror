@@ -1,3 +1,4 @@
+import Particles from "../utils/particles";
 import { sound } from "../utils/sound";
 
 const forwardVector = new THREE.Vector3(0, 0, 1);
@@ -12,11 +13,12 @@ AFRAME.registerComponent('bullet', {
         target: {
             type: "vec3"
         },
-        armed:{
-            default:false            
+        armed: {
+            default: false
         }
     },
     init: function () {
+        this.explosionGroup = document.getElementById('explosion-group');
         this.direction = new THREE.Vector3(this.data.target.x, this.data.target.y, this.data.target.z)
         this.direction = this.direction.sub(this.el.object3D.position)
             .normalize()
@@ -24,23 +26,31 @@ AFRAME.registerComponent('bullet', {
         this.isMoving = true;
 
         this.el.object3D.lookAt(new THREE.Vector3(this.data.target.x, this.data.target.y, this.data.target.z),);
-        this.el.setAttribute("raycaster", "far:.4;showLine:false;objects:.mirror,.enemy;direction:0 0 1");
+        this.el.setAttribute("raycaster", "far:.8;showLine:false;objects:.player-hitbox,.mirror,.enemy;direction:0 0 1");
         this.el.addEventListener('raycaster-intersection', (e) => {
             let elm = e.detail.els[0];
-            if(elm.classList.contains("mirror")){
+            if (elm.classList.contains("mirror")) {
                 var originalNormal = new THREE.Vector3(0, 0, 1);
-                var objRotation = elm.parentEl.object3D.rotation;            
+                var objRotation = elm.parentEl.object3D.rotation;
                 this.direction.reflect(originalNormal.applyEuler(objRotation));
                 let newTarget = this.el.object3D.position.clone().add(this.direction);
                 this.el.object3D.lookAt(newTarget);
                 this.data.armed = true;
                 sound.play(sound.fire, this.el.object3D);
             }
-            if(elm.classList.contains("enemy") && this.data.armed ){
-                elm.setAttribute("selfdestruct",{timer:500});
-                this.el.setAttribute("selfdestruct",{timer:500});
+            if (elm.classList.contains("enemy") && this.data.armed) {
+                let explosion = document.createElement('a-entity');
+                explosion.setAttribute('position', elm.object3D.position);
+                explosion.setAttribute('explosion', { decay: .1, scale: 20 });
+                this.explosionGroup.appendChild(explosion);
                 sound.play(sound.explosion, this.el.object3D);
-            }            
+                elm.setAttribute("selfdestruct", { timer: 0 });
+                this.el.setAttribute("selfdestruct", { timer: 0 });
+                this.el.sceneEl.components["game"].killEnemy();
+            }
+            if(elm.classList.contains("player-hitbox")){
+                this.el.sceneEl.components["game"].hit();
+            }
         });
     },
     update: function (oldData) {

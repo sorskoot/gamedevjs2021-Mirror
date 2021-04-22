@@ -1,10 +1,17 @@
-MustHave:
-    ☐ Title screen
+MustHave:    
+    ☐ Title screen  
     ☐ Game over screen
-    ☐ Winning 
-    ☐ Loosing
+    ☐ Finish Game cycle
+
+    ✘ Winning @cancelled(21-04-20 12:09)
+    ✔ HUD @done(21-04-22 23:44)
+    ✔ Keep score @done(21-04-22 23:44)
+    ✔ Loosing @done(21-04-23 00:02)
+        ~ keep track of the number of lasers that hit you
+
+
     ✔ Better shield models @done(21-04-19 13:38)
-    ☐ Environment model
+    ✔ Environment model @done(21-04-20 12:09)
 
     ✔ Add mirrors (boxes) we can hold in our hands @done(21-04-15 21:25)
     ✔ Enemies @done(21-04-15 21:52)
@@ -13,7 +20,26 @@ MustHave:
         ~ have we hit the mirror?
         ~ at what angle?
         ~ figure out how to mirror back
-        ~ 
+
+Should have:
+    ☐ Indication when ships fire laser (light or particles)
+    ☐ sound when getting hit
+    ☐ sound when laser misses
+    ☐ use object as shields
+    ☐ Make game only playable in VR
+    ☐ Incrementally getting harder
+    ☐ Better waves
+    ☐ Music on title screen 
+    ☐ Music on Game Over screen    
+    ☐ High Score on NEAR -> host on IPFS
+
+Could Have:
+    ☐ Have ships shoot rockets ~ instakill or loose a mirror
+    ☐ Playable on Desktop    
+    ☐ Bonusses:
+        ☐ Better shield
+        ☐ Add damage to reflected laser 
+        ☐ Increase Health
 
 GAME:
     ☐ Basic: Enemies shoot lasers at you, you need to bounce them back

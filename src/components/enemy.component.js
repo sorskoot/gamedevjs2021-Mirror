@@ -55,11 +55,11 @@ AFRAME.registerComponent('enemy', {
     fire: function () {
         let bullet = document.createElement("a-entity");
         let target = document.getElementById('camera').object3D.position.clone();
-        target.y -= .5;
+        target.y -= .3;
         bullet.setAttribute("bullet", { target });
         bullet.setAttribute("selfdestruct", { timer: 6000 });
         bullet.setAttribute("mixin", "bullet-mixin");
-        bullet.setAttribute("geometry", "primitive: box; width: .35; height: .35; depth: 6")
+        bullet.setAttribute("geometry", "primitive: box; width: 1; height: 1; depth: 12")
         bullet.setAttribute("position", this.el.object3D.position);
         this.bulletgroup.appendChild(bullet);
     },

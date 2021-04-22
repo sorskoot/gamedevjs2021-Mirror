@@ -8,5 +8,6 @@ import "./components/enemy-spawner.component";
 import "./components/bullet.component";
 import "./components/selfdestruct.component";
 import "./components/space.component";
+import "./components/explosion.component";
 
 console.log("latest reload:"+new Date());

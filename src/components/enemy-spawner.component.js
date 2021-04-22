@@ -1,6 +1,6 @@
 const wave = {
     enemy: [{
-        time: 5000,
+        time: 4000,
         path: [
             new THREE.Vector3(-50, 35, -100),
             new THREE.Vector3(0, 30, -80),

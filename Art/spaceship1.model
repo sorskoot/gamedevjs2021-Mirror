@@ -2,8 +2,8 @@
 
 :materials
 
-[name:metalPurple;color:RGBA(0.081, 0.098, 0.234, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0;]
-[name:_defaultMat;color:RGBA(0.254, 0.092, 0.276, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
+[name:metalPurple;color:RGBA(0.418, 0.421, 0.448, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0;]
+[name:_defaultMat;color:RGBA(0.331, 0.126, 0.359, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
 [name:shield;color:RGBA(0.194, 0.230, 0.269, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.35;]
 [name:dark;color:RGBA(0.869, 0.067, 0.067, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0;]
 
