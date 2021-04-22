@@ -40,13 +40,13 @@
     <a-entity id="bullet-group"></a-entity>    
     <a-entity id="explosion-group"></a-entity>        
     
-    <a-entity id="left-hand" shoot-controls="hand:left">
+    <a-entity id="left-hand" haptics shoot-controls="hand:left">
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>
       <a-entity id="score" position="0.002 0.149 0.055" text="value: 99; align: center; color: #6663A5"></a-entity>
     </a-entity>
-    <a-entity id="right-hand" shoot-controls="hand:right">
+    <a-entity id="right-hand" haptics shoot-controls="hand:right">
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>

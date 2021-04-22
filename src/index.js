@@ -9,5 +9,6 @@ import "./components/bullet.component";
 import "./components/selfdestruct.component";
 import "./components/space.component";
 import "./components/explosion.component";
+import "./components/haptics.component";
 
 console.log("latest reload:"+new Date());

@@ -37,6 +37,7 @@ AFRAME.registerComponent('bullet', {
                 this.el.object3D.lookAt(newTarget);
                 this.data.armed = true;
                 sound.play(sound.fire, this.el.object3D);
+                elm.parentEl.components.haptics.pulse(0.5, 100);
             }
             if (elm.classList.contains("enemy") && this.data.armed) {
                 let explosion = document.createElement('a-entity');

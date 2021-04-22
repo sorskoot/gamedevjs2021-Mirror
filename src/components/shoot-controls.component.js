@@ -10,8 +10,11 @@ export default AFRAME.registerComponent('shoot-controls', {
         this.onButtonChanged = this.onButtonChanged.bind(this);
         this.onButtonDown = function (evt) { self.onButtonEvent(evt.detail.id, 'down'); };
         this.onButtonUp = function (evt) { self.onButtonEvent(evt.detail.id, 'up'); };
+        
     },
-
+    pulse(){
+  
+    },
     play: function () {
         var el = this.el;
         el.addEventListener('buttonchanged', this.onButtonChanged);
@@ -51,8 +54,7 @@ export default AFRAME.registerComponent('shoot-controls', {
 
     onButtonEvent: function (id, evtName) {
         var buttonName = this.mapping['button' + id];
-        //this.el.emit(buttonName + evtName);
-
+        //this.el.emit(buttonName + evtName);        
         if (evtName === 'down') {
             let camrot = new THREE.Euler(
                 this.el.object3D.rotation.x,
@@ -87,5 +89,6 @@ export default AFRAME.registerComponent('shoot-controls', {
             el.setAttribute('daydream-controls', { hand: data.hand, model: false });
             el.setAttribute('gearvr-controls', { hand: data.hand, model: false });
         }
+        
     }
 });
