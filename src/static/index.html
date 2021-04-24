@@ -33,13 +33,26 @@
       <a-mixin rotation="0 0 0" id="enemy-mixin" gltf-model="#enemy-model"></a-mixin>
       <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>
       <a-mixin id="debug-curve" material="color:red" geometry="primitive:sphere;radius:3"></a-mixin>
+      <img src="./images/TitleScreen.png" id="img-titlescreen">
+      <img src="./images/Game Over.png" id="img-gameoverscreen">
+      <img src="./images/TriggerToStart.png" id="img-triggertostart">
     </a-assets>
     <a-sky space animation="property: rotation; to: -360 -360 0; dur: 500000; easing: linear; loop: true"></a-sky>
-    <a-entity position="0 .5 2.5" shadow gltf-model="#environment-model"></a-entity>
+    <a-entity position="0 .5 1.5" shadow gltf-model="#environment-model"></a-entity>
     <a-entity id="enemy-group"></a-entity>
     <a-entity id="bullet-group"></a-entity>    
-    <a-entity id="explosion-group"></a-entity>        
+    <a-entity id="explosion-group"></a-entity> 
+
+    <a-entity id="TitleScreen" scale="5 5 5" position="0 2 -5" visible="false">   
+      <a-plane  scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-titlescreen ; transparent: true"></a-plane>
+      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-triggertostart; transparent: true"></a-plane>
+    </a-entity>
     
+    <a-entity id="GameOverScreen" scale="5 5 5" position="0 2 -5" visible="false">   
+      <a-plane  scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-gameoverscreen ; transparent: true"></a-plane>
+      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-triggertostart; transparent: true"></a-plane>
+    </a-entity>
+
     <a-entity id="left-hand" haptics shoot-controls="hand:left">
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
