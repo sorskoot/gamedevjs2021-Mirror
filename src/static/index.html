@@ -3,21 +3,48 @@
 <head>
   <meta name="monetization" content="$ilp.uphold.com/qxZKhgaL7wWJ">
   <script
-    src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d46464268ad8ef541511ba5f87c8f1830066d7de/dist/aframe-master.min.js"></script>  
+    src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d46464268ad8ef541511ba5f87c8f1830066d7de/dist/aframe-master.min.js"></script>
   <script src="https://sfxr.me/riffwave.js"></script>
   <script src="https://sfxr.me/sfxr.js"></script>
   <script src="main.js"></script>
   <style>
+    #entervr {
+      /* display:none; */
+      width: 100%;
+      height: 100%;
 
+    }
+
+
+    #myEnterVRButton {
+      background-image: url(./images/EnterVR-Button.png);
+      z-index: 160;
+      height: 160px;
+      width: 320px;
+      right: 100px;
+      bottom: 50px;
+      position: absolute;
+
+      background-size: cover;
+    }
   </style>
 
 </head>
 
 <body>
-  <audio id="music-game" src="licensed/Dark Fantasy Studio- Sky titans (seamless).mp3"></audio>
-  <audio id="music-title" src="licensed/Dark Fantasy Studio- Superheroes of the apocalypse age (seamless).mp3"></audio>
-  <audio id="sfx-hurt" src="/sfx/hurt.mp3"></audio>
-  <a-scene game enemy-spawner>
+  <audio id="music-game" src="licensed/Dark Fantasy Studio- Sky titans (seamless).mp3" autostart="0"></audio>
+  <audio id="music-title" src="licensed/Dark Fantasy Studio- Superheroes of the apocalypse age (seamless).mp3"
+    autostart="0"></audio>
+  <a-scene game enemy-spawner="active:false"
+    vr-mode-ui="enabled:true;enterVRButton: #myEnterVRButton;enterARButton:#none">
+    <!-- Style the button with images or whatever. -->
+    <div id="entervr">
+
+      <a id="myEnterVRButton" href="#">&nbsp;</a>
+
+    </div>
+
+    <a href="#" id="none"></a>
     <a-assets>
       <a-cubemap id="sky-texture">
         <img src="/images/px.png">
@@ -36,43 +63,65 @@
       <img src="./images/TitleScreen.png" id="img-titlescreen">
       <img src="./images/Game Over.png" id="img-gameoverscreen">
       <img src="./images/TriggerToStart.png" id="img-triggertostart">
+      <img src="./images/EnterVR.png" id="img-entervrscreen">
     </a-assets>
     <a-sky space animation="property: rotation; to: -360 -360 0; dur: 500000; easing: linear; loop: true"></a-sky>
     <a-entity position="0 .5 1.5" shadow gltf-model="#environment-model"></a-entity>
     <a-entity id="enemy-group"></a-entity>
-    <a-entity id="bullet-group"></a-entity>    
-    <a-entity id="explosion-group"></a-entity> 
+    <a-entity id="bullet-group"></a-entity>
+    <a-entity id="explosion-group"></a-entity>
 
-    <a-entity id="TitleScreen" scale="5 5 5" position="0 2 -5" visible="false">   
-      <a-plane  scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-titlescreen ; transparent: true"></a-plane>
-      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-triggertostart; transparent: true"></a-plane>
+    <a-entity id="EnterXR" scale="5 5 5" position="0 1.8 -3">
+      <a-plane scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-titlescreen ; transparent: true">
+      </a-plane>
+      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-entervrscreen; transparent: true">
+      </a-plane>
+      <a-entity mixin="enemy-mixin" rotation="20 12.99 20" position="0 1 -5"></a-entity>
     </a-entity>
-    
-    <a-entity id="GameOverScreen" scale="5 5 5" position="0 2 -5" visible="false">   
-      <a-plane  scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-gameoverscreen ; transparent: true"></a-plane>
-      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-triggertostart; transparent: true"></a-plane>
+
+    <a-entity id="TitleScreen" scale="5 5 5" position="0 2 -5" visible="false">
+      <a-plane scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-titlescreen ; transparent: true">
+      </a-plane>
+      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-triggertostart; transparent: true">
+      </a-plane>
+    </a-entity>
+
+    <a-entity id="GameOverScreen" scale="5 5 5" position="0 2 -5" visible="false">
+      <a-plane scale="1.25 1.25 1.25" width="1" height=".25" material="src: #img-gameoverscreen ; transparent: true">
+      </a-plane>
+      <a-plane width=".5" height=".25" position="0 -0.097 0.215" material="src: #img-triggertostart; transparent: true">
+      </a-plane>
     </a-entity>
 
     <a-entity id="left-hand" haptics shoot-controls="hand:left">
+
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>
       <a-entity id="score" position="0.002 0.149 0.055" text="value: 99; align: center; color: #6663A5"></a-entity>
+
     </a-entity>
     <a-entity id="right-hand" haptics shoot-controls="hand:right">
+
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>
-      <a-plane rotation="-14.394 0 0" position="-0.00017 0.14648 0.0420" material="color: green" geometry="height: 0.08; width: 0.05"></a-plane>
-      <a-plane id="healthbar" rotation="-14.394 0 0" position="-0.00017 0.14648 0.0434" material="color: red" geometry="height: 0.08; width: 0.05"></a-plane>
+      <a-plane rotation="-14.394 0 0" position="-0.00017 0.14648 0.0420" material="color: green"
+        geometry="height: 0.08; width: 0.05"></a-plane>
+      <a-plane id="healthbar" rotation="-14.394 0 0" position="-0.00017 0.14648 0.0434" material="color: red"
+        geometry="height: 0.08; width: 0.05"></a-plane>
+
     </a-entity>
 
-    <a-entity id="camera" position="0 1.7 0" camera look-controls>              
-        <a-box class="player-hitbox" material="opacity:  0.1;  transparent:  true;" position="0 0 0" scale="0.5 1 0.3"> </a-box>
+    <a-entity id="camera" position="0 1.7 0" camera look-controls>
+      <a-box class="player-hitbox" material="opacity:  0.1;  transparent:  true;" position="0 0 0" scale="0.5 1 0.3">
+      </a-box>
     </a-entity>
-   
+
     <a-entity light="type: point;" position="3 7.5 -3.5"></a-entity>
-    <a-entity light="intensity: 4; castShadow: true; shadowCameraTop: 8; shadowCameraRight: 8; shadowCameraBottom: -8; shadowCameraLeft: -8; shadowMapHeight: 1024; shadowMapWidth: 1024; shadowRadius: 4" position="4.98338 11.44695 -5.67142" visible=""></a-entity>
+    <a-entity
+      light="intensity: 4; castShadow: true; shadowCameraTop: 8; shadowCameraRight: 8; shadowCameraBottom: -8; shadowCameraLeft: -8; shadowMapHeight: 1024; shadowMapWidth: 1024; shadowRadius: 4"
+      position="4.98338 11.44695 -5.67142" visible=""></a-entity>
     <a-entity light="color: #7d6383; type: ambient; intensity: 2"></a-entity>
   </a-scene>
 

@@ -2,6 +2,7 @@ import { sound } from "../utils/sound";
 import { VecUtils } from "../utils/vecUtils";
 
 const STATE = {
+   NOTXR:0,
    TITLE: 1,
    PLAYING: 2,
    GAMEOVER: 3
@@ -19,16 +20,22 @@ AFRAME.registerComponent('game', {
       this.musicGame = document.getElementById("music-game");
       this.musicTitle = document.getElementById("music-title");
       this.enemyGroup = document.getElementById("enemy-group");
-
+      this.bulletGroup = document.getElementById("bullet-group");
+      this.screenNotXR = document.getElementById("EnterXR");
+      this.screenTitle =document.getElementById("TitleScreen");
+      this.screenGameOver = document.getElementById("GameOverScreen");
+      this.lefthand = document.getElementById("left-hand");
+      this.righthand = document.getElementById("right-hand");
+      this.spawner = this.el.sceneEl.components["enemy-spawner"];
       sound.init();
-      this.updateState(STATE.TITLE);
+      this.updateState(STATE.NOTXR);
       
       this.el.sceneEl.addEventListener('enter-vr', () => {
-         this.updateState(STATE.PLAYING);
+         this.updateState(STATE.TITLE);
 
       })
       this.el.sceneEl.addEventListener('exit-vr', () => {
-         this.updateState(STATE.TITLE);
+         this.updateState(STATE.NOTXR);
       })
 
       //0 0.145 0.044 - DEATH
@@ -37,16 +44,40 @@ AFRAME.registerComponent('game', {
       //THREE.MathUtils.lerp()
    },
    updateState: function (newState) {
+      if(this.state === newState) return;
       this.state = newState;
       switch (this.state) {
+         case STATE.NOTXR:
+            this.screenNotXR.setAttribute("visible","true")
+            this.screenTitle.setAttribute("visible","false")
+            this.screenGameOver.setAttribute("visible","false")
+            this.lefthand.setAttribute("visible","false");
+            this.righthand.setAttribute("visible","false");
+            this.el.sceneEl.setAttribute("enemy-spawner",{active:false});
+            this.enemyGroup.innerHTML = ''; 
+            this.bulletGroup.innerHTML = ''; 
+            this.musicGame.pause();
+            this.musicTitle.pause();
+            break;
          case STATE.TITLE:
+            this.screenNotXR.setAttribute("visible","false")
+            this.screenTitle.setAttribute("visible","true")
+            this.screenGameOver.setAttribute("visible","false")
+            this.lefthand.setAttribute("visible","true");
+            this.righthand.setAttribute("visible","true");
             this.musicGame.pause();
             this.musicTitle.volume = .6;
             this.musicTitle.loop = true
             this.musicTitle.currentTime = 4; // just skipping the loop point
             this.musicTitle.play();
+            this.el.sceneEl.setAttribute("enemy-spawner",{active:false});
             break;
          case STATE.PLAYING:
+            this.screenNotXR.setAttribute("visible","false");
+            this.screenTitle.setAttribute("visible","false");
+            this.screenGameOver.setAttribute("visible","false");
+            this.lefthand.setAttribute("visible","true");
+            this.righthand.setAttribute("visible","true");
             this.musicTitle.pause();
             this.health = this.data.MaxHealth;
             this.score = 0;
@@ -56,12 +87,20 @@ AFRAME.registerComponent('game', {
             this.musicGame.loop = true
             this.musicGame.currentTime = 3.35; // just skipping the loop point
             this.musicGame.play();
+            this.el.sceneEl.setAttribute("enemy-spawner",{active:true});
             break;
          case STATE.GAMEOVER:
+            this.screenNotXR.setAttribute("visible","false");
+            this.screenTitle.setAttribute("visible","false");
+            this.screenGameOver.setAttribute("visible","true");
+            this.lefthand.setAttribute("visible","true");
+            this.righthand.setAttribute("visible","true");
             this.musicGame.pause();
             this.musicTitle.currentTime = 4; // just skipping the loop point
             this.musicTitle.play();
-            this.enemyGroup.innerHTML = '';           
+            this.enemyGroup.innerHTML = '';      
+            this.bulletGroup.innerHTML = '';      
+            this.el.sceneEl.setAttribute("enemy-spawner",{active:false});
             break;
       }
    },
@@ -84,7 +123,10 @@ AFRAME.registerComponent('game', {
    },
    updateScore(){
       this.scoreText.setAttribute("text",{value:this.score});
-   }
-
-
+   },
+   trigger:function(){
+      if(this.state === STATE.TITLE || this.state === STATE.GAMEOVER){
+         this.updateState(STATE.PLAYING);
+      }
+   }   
 });

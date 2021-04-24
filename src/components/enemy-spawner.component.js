@@ -1,5 +1,6 @@
 const wave = {
     enemy: [{
+
         time: 4000,
         path: [
             new THREE.Vector3(-50, 35, -100),
@@ -91,6 +92,7 @@ const wave = {
 
 AFRAME.registerComponent('enemy-spawner', {
     schema: {
+        active: { default: false },
         spawnrate: {
             default: 30000
         },
@@ -101,20 +103,31 @@ AFRAME.registerComponent('enemy-spawner', {
     init: function () {
         this.enemygroup = document.getElementById("enemy-group");
         // this.active = true;   
-       
-        this.el.sceneEl.addEventListener('enter-vr', () => {
+
+
+
+        // this.spawnEnemy(0);           
+        // this.spawnEnemy(1);          
+        // this.interval = setInterval(this.spawnEnemy.bind(this), this.data.spawnrate);
+
+        // this.el.sceneEl.addEventListener('exit-vr', () => {
+        //     this.active = false;
+        //     clearInterval(this.interval);
+        //})
+    },
+    update: function (data) {
+        if (this.data.active === data.active) return;
+        console.log(this.data.active + ' -- ' + data.active);
+        if (this.data.active == true) {
             this.active = true;
             for (let index = 0; index < wave.enemy.length; index++) {
                 setTimeout((n) => this.spawnEnemy(n), wave.enemy[index].time, index);
             }
-            // this.spawnEnemy(0);           
-            // this.spawnEnemy(1);          
-            // this.interval = setInterval(this.spawnEnemy.bind(this), this.data.spawnrate);
-        })
-        this.el.sceneEl.addEventListener('exit-vr', () => {
+        } else {
             this.active = false;
             clearInterval(this.interval);
-        })
+        }
+
     },
     spawnEnemy: function (index) {
         let enemy = document.createElement("a-entity");

@@ -62,18 +62,7 @@ export default AFRAME.registerComponent('shoot-controls', {
                 this.el.object3D.rotation.z, 'XYZ');
             let v = new THREE.Vector3(0, 0, 1);
             v.applyEuler(camrot);
-
-            document.querySelector('[game]').emit('fire', {
-                direction: {
-                    x: v.x,
-                    y: v.y,
-                    z: v.z
-                }, position: {
-                    x: this.el.object3D.position.x,
-                    y: this.el.object3D.position.y,
-                    z: this.el.object3D.position.z
-                }
-            });
+            this.el.sceneEl.components.game.trigger();
         }
     },
 

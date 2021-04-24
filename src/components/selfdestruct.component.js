@@ -3,8 +3,13 @@ export default AFRAME.registerComponent('selfdestruct', {
         timer: { default: 5000 }
     },
     init: function () {
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
             this.el.remove();
         }, this.data.timer);
+    },
+    remove: function () {
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
     }
 });
