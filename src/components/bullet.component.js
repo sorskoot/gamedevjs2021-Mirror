@@ -45,8 +45,8 @@ AFRAME.registerComponent('bullet', {
                 explosion.setAttribute('explosion', { decay: .1, scale: 20 });
                 this.explosionGroup.appendChild(explosion);
                 sound.play(sound.explosion, this.el.object3D);
-                elm.setAttribute("selfdestruct", { timer: 0 });
-                this.el.setAttribute("selfdestruct", { timer: 0 });
+                elm.setAttribute("selfdestruct", { timer: 100 });
+                this.el.setAttribute("selfdestruct", { timer: 100 });
                 this.el.sceneEl.components["game"].killEnemy();
             }
             if(elm.classList.contains("player-hitbox")){

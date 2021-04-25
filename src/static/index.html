@@ -35,7 +35,9 @@
   <audio id="music-game" src="licensed/Dark Fantasy Studio- Sky titans (seamless).mp3" autostart="0"></audio>
   <audio id="music-title" src="licensed/Dark Fantasy Studio- Superheroes of the apocalypse age (seamless).mp3"
     autostart="0"></audio>
-  <a-scene game enemy-spawner="active:false"
+  <a-scene 
+    game enemy-spawner="active:false"
+    loading-screen="dotsColor: #6663A5; backgroundColor: black"
     vr-mode-ui="enabled:true;enterVRButton: #myEnterVRButton;enterARButton:#none">
     <!-- Style the button with images or whatever. -->
     <div id="entervr">
@@ -45,7 +47,7 @@
     </div>
 
     <a href="#" id="none"></a>
-    <a-assets>
+    <a-assets timeout="25000">
       <a-cubemap id="sky-texture">
         <img src="/images/px.png">
         <img src="/images/nx.png">
