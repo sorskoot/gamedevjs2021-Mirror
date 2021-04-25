@@ -1,3 +1,9 @@
+const TYPE = [
+    "enemy-mixin",
+    "enemy2-mixin",
+    "enemy3-mixin"
+]
+
 AFRAME.registerComponent('enemy', {
     schema: {
         fireRate: {
@@ -6,14 +12,14 @@ AFRAME.registerComponent('enemy', {
         duration: {
             default: 15000
         },
-        type:{
-            default:1
+        type: {
+            default: 1
         }
 
     },
     init: function () {
         this.bulletgroup = document.getElementById("bullet-group");
-        this.el.setAttribute('mixin', this.data.type===1?'enemy-mixin':'enemy2-mixin');
+        this.el.setAttribute('mixin', TYPE[this.data.type - 1]);
         let position = new THREE.Vector3(
             Math.sin(Math.random() * Math.PI) * 25,
             10,

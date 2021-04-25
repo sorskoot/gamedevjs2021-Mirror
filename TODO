@@ -24,6 +24,7 @@ MustHave:
         ~ figure out how to mirror back
 
 Should have:
+    ☐ Go to the next wave when all enemies are killed    
     ☐ Better waves
     ☐ sound when laser misses
     ☐ Indication when ships fire laser (light or particles)

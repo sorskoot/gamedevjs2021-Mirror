@@ -1,6 +1,6 @@
 export const wave = [{
     enemy: [{
-        type:1,
+        type: 1,
         time: 4000,
         path: [
             new THREE.Vector3(-50, 35, -100),
