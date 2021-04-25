@@ -1,5 +1,6 @@
 import { sound } from "../utils/sound";
 import { VecUtils } from "../utils/vecUtils";
+import { wave } from "../utils/waves";
 
 const STATE = {
    NOTXR: 0,
@@ -88,7 +89,11 @@ AFRAME.registerComponent('game', {
             this.musicGame.loop = true
             this.musicGame.currentTime = 3.35; // just skipping the loop point
             this.musicGame.play();
-            this.el.sceneEl.setAttribute("enemy-spawner", { active: true });
+            this.el.sceneEl.setAttribute("enemy-spawner", { 
+               active: true,
+               currentWave:0
+            });
+            this.leftInWave = wave[0].enemy.length;
             break;
          case STATE.GAMEOVER:
             this.screenNotXR.setAttribute("visible", "false");
@@ -110,6 +115,10 @@ AFRAME.registerComponent('game', {
    killEnemy: function () {
       this.score++;
       this.updateScore();
+      this.leftInWave--;
+      if(this.leftInWave===0){         
+         this.leftInWave = wave[this.el.sceneEl.components["enemy-spawner"].nextWave()]
+      }
    },
    hit: function () {
       sound.play(sound.hurt, this.el.object3D, true);
