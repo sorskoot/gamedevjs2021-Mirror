@@ -117,7 +117,6 @@ AFRAME.registerComponent('enemy-spawner', {
     },
     update: function (data) {
         if (this.data.active === data.active) return;
-        console.log(this.data.active + ' -- ' + data.active);
         if (this.data.active == true) {
             this.active = true;
             for (let index = 0; index < wave.enemy.length; index++) {
