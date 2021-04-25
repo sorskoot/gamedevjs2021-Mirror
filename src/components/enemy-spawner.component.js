@@ -102,28 +102,14 @@ AFRAME.registerComponent('enemy-spawner', {
     },
     init: function () {
         this.enemygroup = document.getElementById("enemy-group");
-        // this.active = true;   
-
-
-
-        // this.spawnEnemy(0);           
-        // this.spawnEnemy(1);          
-        // this.interval = setInterval(this.spawnEnemy.bind(this), this.data.spawnrate);
-
-        // this.el.sceneEl.addEventListener('exit-vr', () => {
-        //     this.active = false;
-        //     clearInterval(this.interval);
-        //})
     },
     update: function (data) {
         if (this.data.active === data.active) return;
         if (this.data.active == true) {
-            this.active = true;
             for (let index = 0; index < wave.enemy.length; index++) {
                 setTimeout((n) => this.spawnEnemy(n), wave.enemy[index].time, index);
             }
         } else {
-            this.active = false;
             clearInterval(this.interval);
         }
 
@@ -131,7 +117,7 @@ AFRAME.registerComponent('enemy-spawner', {
     spawnEnemy: function (index) {
         let enemy = document.createElement("a-entity");
         enemy.classList.add('enemy');
-        enemy.setAttribute("enemy", '');
+        enemy.setAttribute("enemy", {type:2});
 
         enemy.components["enemy"].setup(wave.enemy[index].path, wave.enemy[index].triggerPoints);
 

@@ -2,6 +2,12 @@
 
 <head>
   <meta name="monetization" content="$ilp.uphold.com/qxZKhgaL7wWJ">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <script
     src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d46464268ad8ef541511ba5f87c8f1830066d7de/dist/aframe-master.min.js"></script>
   <script src="https://sfxr.me/riffwave.js"></script>
@@ -27,23 +33,37 @@
 
       background-size: cover;
     }
+    .thanks-for-support {
+      display:none;
+    }
+    .monetized .thanks-for-support{
+      display: block;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: green;
+    z-index: 200;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    color: white;
+    }
   </style>
 
 </head>
 
-<body>
+<body class="">
   <audio id="music-game" src="licensed/Dark Fantasy Studio- Sky titans (seamless).mp3" autostart="0"></audio>
   <audio id="music-title" src="licensed/Dark Fantasy Studio- Superheroes of the apocalypse age (seamless).mp3"
     autostart="0"></audio>
-  <a-scene 
-    game enemy-spawner="active:false"
-    loading-screen="dotsColor: #6663A5; backgroundColor: black"
+  <div class="thanks-for-support">
+    Thank you for your support using Web Monetization!!
+  </div>
+  <a-scene game enemy-spawner="active:false" loading-screen="dotsColor: #6663A5; backgroundColor: black"
     vr-mode-ui="enabled:true;enterVRButton: #myEnterVRButton;enterARButton:#none">
     <!-- Style the button with images or whatever. -->
     <div id="entervr">
-
       <a id="myEnterVRButton" href="#">&nbsp;</a>
-
     </div>
 
     <a href="#" id="none"></a>
@@ -57,9 +77,11 @@
         <img src="/images/nz.png">
       </a-cubemap>
       <a-asset-item id="enemy-model" src="/models/spaceship1.glb"></a-asset-item>
+      <a-asset-item id="enemy-model2" src="/models/spaceship2.glb"></a-asset-item>
       <a-asset-item id="mirror-model" src="/models/mirror.glb"></a-asset-item>
       <a-asset-item id="environment-model" src="/models/environment.glb"></a-asset-item>
       <a-mixin rotation="0 0 0" id="enemy-mixin" gltf-model="#enemy-model"></a-mixin>
+      <a-mixin rotation="0 0 0" id="enemy2-mixin" gltf-model="#enemy-model2"></a-mixin>
       <a-mixin id="bullet-mixin" material="color: blue" scale=".1 .1 .1"></a-mixin>
       <a-mixin id="debug-curve" material="color:red" geometry="primitive:sphere;radius:3"></a-mixin>
       <img src="./images/TitleScreen.png" id="img-titlescreen">
@@ -130,7 +152,8 @@
   <script>
     if (document.monetization) {
       document.monetization.addEventListener('monetizationstart', () => {
-        //document.body.style.backgroundColor = "red";
+        document.body.classList.add('monetized'); 
+        console.log('Thanks for supporting!!')       
       })
     }
   </script>
