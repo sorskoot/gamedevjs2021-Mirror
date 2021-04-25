@@ -1,6 +1,6 @@
-const wave = {
+const wave = [{
     enemy: [{
-
+        type:1,
         time: 4000,
         path: [
             new THREE.Vector3(-50, 35, -100),
@@ -23,7 +23,8 @@ const wave = {
         ]
     },
     {
-        time: 5000,
+        type:1,
+        time: 5000,        
         path: [
             new THREE.Vector3(50, 35, -100),
             new THREE.Vector3(0, 30, -80),
@@ -45,6 +46,7 @@ const wave = {
         ]
     },
     {
+        type:2,
         time: 10000,
         path: [
             new THREE.Vector3(50, 35, -100),
@@ -67,6 +69,7 @@ const wave = {
         ]
     },
     {
+        type:2,
         time: 12000,
         path: [
             new THREE.Vector3(-50, 35, -100),
@@ -88,7 +91,7 @@ const wave = {
             }
         ]
     }]
-}
+}];
 
 AFRAME.registerComponent('enemy-spawner', {
     schema: {
@@ -98,6 +101,9 @@ AFRAME.registerComponent('enemy-spawner', {
         },
         distance: {
             default: 25
+        },
+        currentWave:{
+            default:0
         }
     },
     init: function () {
@@ -106,8 +112,8 @@ AFRAME.registerComponent('enemy-spawner', {
     update: function (data) {
         if (this.data.active === data.active) return;
         if (this.data.active == true) {
-            for (let index = 0; index < wave.enemy.length; index++) {
-                setTimeout((n) => this.spawnEnemy(n), wave.enemy[index].time, index);
+            for (let index = 0; index < wave[this.data.currentWave].enemy.length; index++) {
+                setTimeout((n) => this.spawnEnemy(n), wave[this.data.currentWave].enemy[index].time, index);
             }
         } else {
             clearInterval(this.interval);
@@ -119,7 +125,7 @@ AFRAME.registerComponent('enemy-spawner', {
         enemy.classList.add('enemy');
         enemy.setAttribute("enemy", {type:2});
 
-        enemy.components["enemy"].setup(wave.enemy[index].path, wave.enemy[index].triggerPoints);
+        enemy.components["enemy"].setup(wave[this.data.currentWave].enemy[index].path, wave[this.data.currentWave].enemy[index].triggerPoints);
 
         this.enemygroup.appendChild(enemy);
     }

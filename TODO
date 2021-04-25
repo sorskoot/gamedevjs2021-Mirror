@@ -1,4 +1,6 @@
 MustHave:    
+    ✔ @critical First explosion doesnt show @done(21-04-25 21:37)
+    ☐ @critical do not continue with planes, lasers and being hit when game over
     ✔ Title screen @done(21-04-25 16:10)
     ✔ Game over screen @done(21-04-25 16:10)
     ✔ Finish Game cycle @done(21-04-25 16:10)
@@ -34,6 +36,10 @@ Should have:
     ☐ High Score on NEAR -> host on IPFS
 
 Could Have:
+    ☐ more enemy types
+    ☐ more variation in lasers
+    ☐ decreasing health on enemies
+    ☐ mute music and sfx    
     ☐ Have ships shoot rockets ~ instakill or loose a mirror
     ☐ Playable on Desktop    
     ☐ Bonusses:

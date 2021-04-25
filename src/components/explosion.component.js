@@ -29,6 +29,7 @@ AFRAME.registerComponent('explosion', {
         let particleEl = this.particles.CreateParticles(
             this.el,'./images/explosion.png',this.data.decay, true, 0, 
             this.data.scale, false, 128);
+            
         particleEl.setAttribute('selfdestruct', { timer: this.data.lifetime });
         this.el.setAttribute('selfdestruct', { timer: this.data.lifetime });
     },

@@ -44,6 +44,7 @@ AFRAME.registerComponent('bullet', {
                 explosion.setAttribute('position', elm.object3D.position);
                 explosion.setAttribute('explosion', { decay: .1, scale: 20 });
                 this.explosionGroup.appendChild(explosion);
+                
                 sound.play(sound.explosion, this.el.object3D);
                 elm.setAttribute("selfdestruct", { timer: 100 });
                 this.el.setAttribute("selfdestruct", { timer: 100 });

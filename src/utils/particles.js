@@ -3,6 +3,10 @@ import fragShader from './../shaders/particle.frag.glsl';
 
 const PARTICLE_COUNT = 75;
 
+const textureLoader = new THREE.TextureLoader();
+const sprites = textureLoader.load('./images/explosion.png');
+sprites.minFilter = sprites.magFilter = 1003;
+
 export default class Particles {   
 
     CreateParticles(rootEl, texture, decay=.1, burst=false, particleRate=30, scale=400, loop=true, particleSize=64) {
@@ -13,9 +17,7 @@ export default class Particles {
         this.bursted = 0;
         this.loop = loop;
 
-        const textureLoader = new THREE.TextureLoader();
-        const sprites = textureLoader.load(texture);
-        sprites.minFilter = sprites.magFilter = 1003;
+       
 
         this.particles = new THREE.BufferGeometry();
 

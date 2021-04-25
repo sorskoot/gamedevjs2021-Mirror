@@ -15,10 +15,11 @@
   <script src="main.js"></script>
   <style>
     #entervr {
-      /* display:none; */
-      width: 100%;
-      height: 100%;
-
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     }
 
 
@@ -27,9 +28,7 @@
       z-index: 160;
       height: 160px;
       width: 320px;
-      right: 100px;
-      bottom: 50px;
-      position: absolute;
+
 
       background-size: cover;
     }
@@ -59,9 +58,10 @@
   <div class="thanks-for-support">
     Thank you for your support using Web Monetization!!
   </div>
-  <a-scene game enemy-spawner="active:false" loading-screen="dotsColor: #6663A5; backgroundColor: black"
+  <a-scene game enemy-spawner="active:false" 
+    loading-screen="dotsColor: #6663A5; backgroundColor: black"
     vr-mode-ui="enabled:true;enterVRButton: #myEnterVRButton;enterARButton:#none">
-    <!-- Style the button with images or whatever. -->
+    
     <div id="entervr">
       <a id="myEnterVRButton" href="#">&nbsp;</a>
     </div>
