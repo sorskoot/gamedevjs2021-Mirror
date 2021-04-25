@@ -73,6 +73,7 @@ AFRAME.registerComponent('game', {
             this.el.sceneEl.setAttribute("enemy-spawner", { active: false });
             break;
          case STATE.PLAYING:
+            this.enemyGroup.innerHTML = '';
             this.screenNotXR.setAttribute("visible", "false");
             this.screenTitle.setAttribute("visible", "false");
             this.screenGameOver.setAttribute("visible", "false");

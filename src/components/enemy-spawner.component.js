@@ -111,12 +111,15 @@ AFRAME.registerComponent('enemy-spawner', {
     },
     update: function (data) {
         if (this.data.active === data.active) return;
+        this.data.intervals = [];
         if (this.data.active == true) {
             for (let index = 0; index < wave[this.data.currentWave].enemy.length; index++) {
-                setTimeout((n) => this.spawnEnemy(n), wave[this.data.currentWave].enemy[index].time, index);
+                this.data.intervals.push(setTimeout((n) => this.spawnEnemy(n), wave[this.data.currentWave].enemy[index].time, index));
             }
         } else {
-            clearInterval(this.interval);
+            for (let i = 0; i < this.data.intervals.length; i++) {
+                clearInterval(this.intervals[i]);                    
+            }            
         }
 
     },

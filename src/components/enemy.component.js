@@ -22,6 +22,7 @@ AFRAME.registerComponent('enemy', {
         this.el.setAttribute("position", position);
         this.t = 0;
         this.lookAt = new THREE.Vector3();
+        this.game = this.el.sceneEl.components.game;
     },
     setup: function (points, triggerPoints) {
         this.curve = new THREE.CatmullRomCurve3(points, true);
@@ -32,7 +33,7 @@ AFRAME.registerComponent('enemy', {
 
     tick: function (time, timeDelta) {
 
-        if (!this.curve) return;
+        if (!this.curve || this.game.state !== 2) return;
 
         this.t += timeDelta;
         if (this.t > this.data.duration) {
