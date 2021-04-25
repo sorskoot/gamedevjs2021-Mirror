@@ -38,8 +38,8 @@ export default class Particles {
                 transparent: true,
                 //wireframe: false,
                 blending: THREE.AdditiveBlending,
-                depthWrite: false,
-                depthTest: false,
+                depthWrite: true,
+                depthTest: true,
                 uniforms: {
                     cameraeye: { value: { x: 0.0, y: 0.0, z: 0.0 } },
                     pointsize: { value: particleSize },

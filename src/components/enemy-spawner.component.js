@@ -1,97 +1,4 @@
-const wave = [{
-    enemy: [{
-        type:1,
-        time: 4000,
-        path: [
-            new THREE.Vector3(-50, 35, -100),
-            new THREE.Vector3(0, 30, -80),
-            new THREE.Vector3(0, 15, 0),
-            new THREE.Vector3(-40, 30, 20)
-        ],
-        triggerPoints: [
-            {
-                isTriggered: false,
-                location: .1,
-                state: 1 // firing
-
-            },
-            {
-                isTriggered: false,
-                location: .3,
-                state: 0 // stop firing                
-            }
-        ]
-    },
-    {
-        type:1,
-        time: 5000,        
-        path: [
-            new THREE.Vector3(50, 35, -100),
-            new THREE.Vector3(0, 30, -80),
-            new THREE.Vector3(0, 15, 0),
-            new THREE.Vector3(40, 30, 20)
-        ],
-        triggerPoints: [
-            {
-                isTriggered: false,
-                location: .1,
-                state: 1 // firing
-
-            },
-            {
-                isTriggered: false,
-                location: .3,
-                state: 0 // stop firing                
-            }
-        ]
-    },
-    {
-        type:2,
-        time: 10000,
-        path: [
-            new THREE.Vector3(50, 35, -100),
-            new THREE.Vector3(-20, -30, -80),
-            new THREE.Vector3(0, 15, 0),
-            new THREE.Vector3(40, 30, 20)
-        ],
-        triggerPoints: [
-            {
-                isTriggered: false,
-                location: .1,
-                state: 1 // firing
-
-            },
-            {
-                isTriggered: false,
-                location: .3,
-                state: 0 // stop firing                
-            }
-        ]
-    },
-    {
-        type:2,
-        time: 12000,
-        path: [
-            new THREE.Vector3(-50, 35, -100),
-            new THREE.Vector3(20, -30, -80),
-            new THREE.Vector3(0, 15, 0),
-            new THREE.Vector3(-40, 30, 20)
-        ],
-        triggerPoints: [
-            {
-                isTriggered: false,
-                location: .1,
-                state: 1 // firing
-
-            },
-            {
-                isTriggered: false,
-                location: .3,
-                state: 0 // stop firing                
-            }
-        ]
-    }]
-}];
+import { wave } from "../utils/waves";
 
 AFRAME.registerComponent('enemy-spawner', {
     schema: {
@@ -126,9 +33,10 @@ AFRAME.registerComponent('enemy-spawner', {
     spawnEnemy: function (index) {
         let enemy = document.createElement("a-entity");
         enemy.classList.add('enemy');
-        enemy.setAttribute("enemy", {type:2});
+        const currentEnemy = wave[this.data.currentWave].enemy[index];
 
-        enemy.components["enemy"].setup(wave[this.data.currentWave].enemy[index].path, wave[this.data.currentWave].enemy[index].triggerPoints);
+        enemy.setAttribute("enemy", {type:currentEnemy.type});
+        enemy.components["enemy"].setup(currentEnemy.path, currentEnemy.triggerPoints);
 
         this.enemygroup.appendChild(enemy);
     }
