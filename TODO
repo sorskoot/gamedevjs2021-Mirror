@@ -1,6 +1,8 @@
 MustHave:    
     ✔ @critical First explosion doesnt show @done(21-04-25 21:37)
     ✔ @critical do not continue with planes, lasers and being hit when game over @done(21-04-25 22:03)
+    ✔ @critical not shooting the first round after gameover @done(21-04-26 00:23)
+    ☐ Let the last wave loop repeat
     ✔ Title screen @done(21-04-25 16:10)
     ✔ Game over screen @done(21-04-25 16:10)
     ✔ Finish Game cycle @done(21-04-25 16:10)
@@ -24,7 +26,7 @@ MustHave:
         ~ figure out how to mirror back
 
 Should have:
-    ☐ Go to the next wave when all enemies are killed    
+    ✔ Go to the next wave when all enemies are killed @done(21-04-25 23:56)
     ☐ Better waves
     ☐ sound when laser misses
     ☐ Indication when ships fire laser (light or particles)

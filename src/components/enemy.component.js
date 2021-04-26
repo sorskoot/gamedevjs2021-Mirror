@@ -32,8 +32,8 @@ AFRAME.registerComponent('enemy', {
     },
     setup: function (points, triggerPoints) {
         this.curve = new THREE.CatmullRomCurve3(points, true);
-
         this.triggerPoints = triggerPoints;
+        this.triggerPoints.forEach(t => t.isTriggered = false);
     },
     update: function (oldData) { },
 

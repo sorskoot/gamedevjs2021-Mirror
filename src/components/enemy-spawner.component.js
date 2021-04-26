@@ -3,12 +3,6 @@ import { wave } from "../utils/waves";
 AFRAME.registerComponent('enemy-spawner', {
     schema: {
         active: { default: false },
-        spawnrate: {
-            default: 30000
-        },
-        distance: {
-            default: 25
-        },
         currentWave: {
             default: 0
         }
@@ -33,10 +27,11 @@ AFRAME.registerComponent('enemy-spawner', {
     },
     nextWave() {
         this.data.currentWave++;
-        if (this.data.currentWave > wave.length) {
+        if (this.data.currentWave >= wave.length) {
             this.data.currentWave = 0;
         }
-        return this.el.setAttribute("enemy-spawner", { "currentWave": this.data.currentWave });
+        this.el.setAttribute("enemy-spawner", { "currentWave": this.data.currentWave })
+        return this.data.currentWave;
     },
     spawnEnemy: function (index) {
         let enemy = document.createElement("a-entity");

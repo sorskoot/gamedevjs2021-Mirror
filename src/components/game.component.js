@@ -117,7 +117,7 @@ AFRAME.registerComponent('game', {
       this.updateScore();
       this.leftInWave--;
       if(this.leftInWave===0){         
-         this.leftInWave = wave[this.el.sceneEl.components["enemy-spawner"].nextWave()]
+         this.leftInWave = wave[this.el.sceneEl.components["enemy-spawner"].nextWave()].enemy.length
       }
    },
    hit: function () {

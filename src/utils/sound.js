@@ -32,7 +32,7 @@ function InitAudio() {
         new SoundEffect("8hHRQjxayu8gTDQwSNPEewuEjf4vkVq6jLv9BYuNUYh8swqUbVARL5Rqif7EsT62KB1ePgHLRAsUan8Y3KZA4LGjUp67om75zbFbWjzHSGmzHkFseQETWJ4Ej").generate().buffer,
     ];
 
-    loadBuffer(audioContext, '/sfx/hurt.mp3').then(x => {
+    loadBuffer(audioContext, './sfx/hurt.mp3').then(x => {
         soundfx.push(x.getChannelData(0));
     });
 

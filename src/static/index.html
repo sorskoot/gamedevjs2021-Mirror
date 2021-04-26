@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="manifest" href="./site.webmanifest">
 
   <script
     src="https://cdn.jsdelivr.net/gh/aframevr/aframe@d46464268ad8ef541511ba5f87c8f1830066d7de/dist/aframe-master.min.js"></script>
@@ -69,18 +69,18 @@
     <a href="#" id="none"></a>
     <a-assets timeout="25000">
       <a-cubemap id="sky-texture">
-        <img src="/images/px.png">
-        <img src="/images/nx.png">
-        <img src="/images/py.png">
-        <img src="/images/ny.png">
-        <img src="/images/pz.png">
-        <img src="/images/nz.png">
+        <img src="./images/px.png">
+        <img src="./images/nx.png">
+        <img src="./images/py.png">
+        <img src="./images/ny.png">
+        <img src="./images/pz.png">
+        <img src="./images/nz.png">
       </a-cubemap>
-      <a-asset-item id="enemy-model" src="/models/spaceship1.glb"></a-asset-item>
-      <a-asset-item id="enemy-model2" src="/models/spaceship2.glb"></a-asset-item>
-      <a-asset-item id="enemy-model3" src="/models/spaceship3.glb"></a-asset-item>
-      <a-asset-item id="mirror-model" src="/models/mirror.glb"></a-asset-item>
-      <a-asset-item id="environment-model" src="/models/environment.glb"></a-asset-item>
+      <a-asset-item id="enemy-model" src="./models/spaceship1.glb"></a-asset-item>
+      <a-asset-item id="enemy-model2" src="./models/spaceship2.glb"></a-asset-item>
+      <a-asset-item id="enemy-model3" src="./models/spaceship3.glb"></a-asset-item>
+      <a-asset-item id="mirror-model" src="./models/mirror.glb"></a-asset-item>
+      <a-asset-item id="environment-model" src="./models/environment.glb"></a-asset-item>
       <a-mixin rotation="0 0 0" id="enemy-mixin" gltf-model="#enemy-model"></a-mixin>
       <a-mixin rotation="0 0 0" id="enemy2-mixin" gltf-model="#enemy-model2"></a-mixin>
       <a-mixin rotation="0 0 0" id="enemy3-mixin" gltf-model="#enemy-model3"></a-mixin>
@@ -124,7 +124,7 @@
       <a-entity class="mirror" rotation="0 180 0" scale=".5 .5 .5" gltf-model="#mirror-model"></a-entity>
       <a-plane position="0 0 -0.152" rotation="0 180 0" height="0.67" width="0.39" env-map="#sky-texture" metalness="1"
         roughness="0.0" material></a-plane>
-      <a-entity id="score" position="0.002 0.149 0.055" text="value: 99; align: center; color: #6663A5"></a-entity>
+      <a-entity id="score" position="0.002 0.149 0.055" text="value: 0; align: center; color: #6663A5"></a-entity>
 
     </a-entity>
     <a-entity id="right-hand" haptics shoot-controls="hand:right">
@@ -140,7 +140,7 @@
     </a-entity>
 
     <a-entity id="camera" position="0 1.7 0" camera look-controls>
-      <a-box class="player-hitbox" material="opacity:  0.1;  transparent:  true;" position="0 0 0" scale="0.5 1 0.3">
+      <a-box class="player-hitbox" material="opacity:  0.1;  transparent:  true;" position="0 0 .3" scale="0.5 1 0.3">
       </a-box>
     </a-entity>
 
